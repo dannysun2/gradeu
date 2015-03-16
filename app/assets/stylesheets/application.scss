@@ -1,0 +1,13 @@
+@import 'bootstrap';
+
+.left-nav {
+   background: #F8FAFB;
+   color: #red;
+   padding: 10px;
+   padding-left: 10px;
+}
+
+.no-gutter > [class*='col-'] {
+    padding-right:0;
+    padding-left:0;
+}
