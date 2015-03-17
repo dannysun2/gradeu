@@ -1,0 +1,14 @@
+<div class="row no-gutter fill">
+   <div class="col-md-3 fill">
+      <div class="left-nav fill">
+      <p>Welcome, <%= @current_user.username %></p>
+      <%= link_to "Add Class", new_user_classgroup_path(user_id: @current_user) %>
+      <hr>
+      <p>My Classes</p>
+      <% @classes.each do |c| %>
+         <p><%= link_to c.name, user_classgroup_path(user_id: @current_user, id: c) %></p>
+      <% end %>
+      <hr>
+      <%= link_to "Sign Out", sign_out_path %>
+   </div>
+</div>

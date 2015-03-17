@@ -1,17 +1,20 @@
 Rails.application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-   get "/sessions/new" => "sessions#new", as: :sign_in
+   get "/sessions/" => "sessions#new", as: :sign_in
    post "/sign-in" => "sessions#create", as: :auth
-   delete "/sessions/delete" => "sessions#destroy", as: :sign_out
+   delete "/sessions/" => "sessions#destroy", as: :sign_out
 
    get "/dashboard/index" => "dashboard#index", as: :dashboard
 
    root "staticpages#index"
 
   resources :users do
-     resources :classgroups
-  end
+   resources :classgroups do
+      resources :students
+   end
+   end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
