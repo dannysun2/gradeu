@@ -22,7 +22,7 @@ class ClassgroupsController < ApplicationController
 
    def show
       @classes = Classgroup.where(user_id: params[:user_id])
-      @classgroup = Classgroup.find(params[:id])
+      @classgroup = Classgroup.find params[:id]
       @students = Student.where classgroup: @classgroup
    end
 end

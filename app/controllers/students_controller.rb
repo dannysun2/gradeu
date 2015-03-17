@@ -14,7 +14,7 @@ class StudentsController < ApplicationController
      @Student.classgroup_id = params[:classgroup_id]
 
       if @Student.save
-            redirect_to user_classgroup_path(id: @current_user.id),  :notice => "Your Class was saved"
+            redirect_to user_classgroup_path(id: @Student.classgroup_id),  :notice => "Your Class was saved"
       else
             render "new"
       end

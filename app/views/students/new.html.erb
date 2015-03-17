@@ -1,4 +1,4 @@
-<%= form_for Student.new, url: user_classgroup_students_path do |f| %>
+<%= form_for Student.new, url: user_classgroup_students_path(classgroup: @classgroup) do |f| %>
   <div class="form-group">
     <%= f.label :firstname %><br/>
     <%= f.text_field :firstname, class: "form-control" %></br>
