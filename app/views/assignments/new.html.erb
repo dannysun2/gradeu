@@ -1,0 +1,17 @@
+<h1>Assignments#new</h1>
+<p>Find me in app/views/assignments/new.html.erb</p>
+
+<%= form_for Assignment.new, url: user_classgroup_assignments_path(classgroup: @classgroup) do |f| %>
+  <div class="form-group">
+    <%= f.label :name %><br/>
+    <%= f.text_field :name, class: "form-control" %></br>
+  </div>
+  <div class="form-group">
+    <%= f.label :weight %><br/>
+    <%= f.text_field :weight, class: "form-control" %></br>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Create", class: "btn btn-primary"%>
+  </div>
+<% end %>

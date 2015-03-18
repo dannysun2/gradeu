@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'assignments/new'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
    get "/sessions/" => "sessions#new", as: :sign_in
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
   resources :users do
    resources :classgroups do
       resources :students
+      resources :assignments
    end
    end
 

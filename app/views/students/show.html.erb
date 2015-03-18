@@ -1,0 +1,16 @@
+<%= render 'layouts/leftnav' %>
+
+<div class="col-md-9">
+   <div class="content">
+   <div class="panel panel-default">
+     <!-- Default panel contents -->
+     <div class="panel-heading"><%= "#{@student.firstname.capitalize} #{@student.lastname.capitalize}" %></div>
+
+   <table class="table table-hover">
+   <% @assignment.each do |a| %>
+   <tr><td><%= a.name %> - <%= link_to "Add Grade", user_classgroup_assignment_path(student_id: @student.id) %></td></tr>
+   <% end %>
+   </table>
+</div>
+</div>
+</div>

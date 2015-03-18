@@ -23,6 +23,7 @@ class ClassgroupsController < ApplicationController
    def show
       @classes = Classgroup.where(user_id: params[:user_id])
       @classgroup = Classgroup.find params[:id]
-      @students = Student.where classgroup: @classgroup
+      @students = Student.where classgroup_id: params[:id]
+      @assignments = Assignment.where classgroup: @classgroup
    end
 end

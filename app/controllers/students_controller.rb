@@ -6,15 +6,19 @@ class StudentsController < ApplicationController
   end
 
   def show
+     @student = Student.find params[:student_id]
+     @classes = Classgroup.where(user_id: params[:user_id])
+     @classgroup = params[:classgroup_id]
+     @assignment = Assignment.where student_id: params[:student_id]
   end
 
   def create
-     @Student = Student.new params.require(:student).permit(:firstname, :lastname)
-     @Student.user_id = @current_user.id
-     @Student.classgroup_id = params[:classgroup_id]
+     @student = Student.new params.require(:student).permit(:firstname, :lastname)
+     @student.user_id = @current_user.id
+     @student.classgroup_id = params[:classgroup_id]
 
-      if @Student.save
-            redirect_to user_classgroup_path(id: @Student.classgroup_id),  :notice => "Your Class was saved"
+      if @student.save
+            redirect_to user_classgroup_path(id: @student.classgroup_id),  :notice => "Your Class was saved"
       else
             render "new"
       end
