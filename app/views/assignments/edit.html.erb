@@ -1,4 +1,4 @@
-<%= form_for @assignment, url: user_classgroup_assignment_path(assignment_id: @assignment) do |f| %>
+<%= form_for @assignment, url: user_classgroup_assignment_path(student_id: @student, assignment_id: @assignment) do |f| %>
 
   <div class="form-group">
     <%= f.label :grade %>
