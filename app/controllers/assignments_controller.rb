@@ -6,6 +6,10 @@ class AssignmentsController < ApplicationController
      @assignment = Assignment.new
   end
 
+  def edit
+     @assignment = Assignment.find params[:assignment_id]
+  end
+
   def create
      @students = Student.where classgroup_id: params[:classgroup_id]
 
@@ -17,6 +21,15 @@ class AssignmentsController < ApplicationController
         @assignment.save
      end
          redirect_to user_classgroup_path(id: @assignment.classgroup_id),  :notice => "Your Class was saved"
+  end
+
+  def update
+     @assignment = Assignment.find params[:assignment_id]
+        if @assignment.update params.require(:assignment).permit(:grade)
+           redirect_to user_classgroup_path(id: @assignment.classgroup_id)
+        else
+           render :edit
+        end
   end
 
 end

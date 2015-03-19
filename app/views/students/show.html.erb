@@ -8,7 +8,7 @@
 
    <table class="table table-hover">
    <% @assignment.each do |a| %>
-   <tr><td><%= a.name %> - <%= link_to "Add Grade", user_classgroup_assignment_path(student_id: @student.id) %></td></tr>
+   <tr><td><%= a.name %> - <%= a.grade.to_i %> - <%= link_to "Add Grade", edit_user_classgroup_assignment_path(student_id: @student.id, assignment_id: a.id) %></td></tr>
    <% end %>
    </table>
 </div>

@@ -9,7 +9,7 @@ class StudentsController < ApplicationController
      @student = Student.find params[:student_id]
      @classes = Classgroup.where(user_id: params[:user_id])
      @classgroup = params[:classgroup_id]
-     @assignment = Assignment.where student_id: params[:student_id]
+     @assignment = Assignment.where(student_id: params[:student_id]).sort_by("created_at" desc)
   end
 
   def create

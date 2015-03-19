@@ -1,0 +1,11 @@
+<%= form_for @assignment, url: user_classgroup_assignment_path(assignment_id: @assignment) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :grade %>
+    <%= f.text_field :grade, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= f.submit class: "btn btn-success" %>
+  </div>
+<% end %>
