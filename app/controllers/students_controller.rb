@@ -6,10 +6,10 @@ class StudentsController < ApplicationController
   end
 
   def show
-     @student = Student.find params[:student_id]
+     @student = Student.find params[:id]
      @classes = Classgroup.where(user_id: params[:user_id])
      @classgroup = params[:classgroup_id]
-     @assignment = Assignment.where(student_id: params[:student_id]).order(:created_at => :asc)
+     @assignment = Assignment.where(student_id: @student.id).order(created_at: :asc)
   end
 
   def create

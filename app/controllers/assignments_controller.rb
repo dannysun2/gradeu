@@ -25,9 +25,18 @@ class AssignmentsController < ApplicationController
   end
 
   def update
+
      @assignment = Assignment.find params[:assignment_id]
         if @assignment.update params.require(:assignment).permit(:grade)
-           redirect_to user_classgroup_path(student_id: @student)
+           redirect_to user_classgroup_student_path(user_id: @current_user.id, classgroup_id: params[:classgroup_id], student_id: params[:student_id] )
+         #   redirect_to user_classgroup_path(student_id: @student)
+
+
+
+
+         #   user_classgroup_student_path(user_id: @user, classgroup_id: @classgroup, id: @student )
+
+
         else
            render :edit
         end
