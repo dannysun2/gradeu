@@ -42,5 +42,11 @@ group :development, :test do
 end
 
 gem 'bootstrap-sass'
-gem 'rails_admin'
 gem 'simple_form', '3.1.0.rc2'
+gem 'lazy_high_charts'
+
+group :development do
+   gem 'rails_admin'
+   gem 'better_errors', '~> 2.1.1'
+   gem 'binding_of_caller', '~> 0.7.2'
+end
