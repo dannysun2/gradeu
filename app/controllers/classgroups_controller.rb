@@ -25,5 +25,25 @@ class ClassgroupsController < ApplicationController
       @classgroup = Classgroup.find params[:id]
       @students = Student.where classgroup_id: params[:id]
       @assignments = Assignment.where classgroup: @classgroup
+
+      @grades = {a: 0, b: 0, c: 0, d: 0, f: 0, other: 0}
+
+      @students.each do |s|
+
+         if (s.average >= 90 && s.average.is_a?(Numeric))
+            @grades[:a] += 1
+         elsif (s.average >= 80 && s.average < 90 && s.average.is_a?(Numeric))
+            @grades[:b] += 1
+         elsif (s.average >= 70 && s.average < 80 && s.average.is_a?(Numeric))
+            @grades[:c] += 1
+         elsif (s.average >= 60 && s.average < 70 && s.average.is_a?(Numeric))
+            @grades[:d] += 1
+         elsif (s.average < 60 && s.average.is_a?(Numeric))
+            @grades[:f] += 1
+         elsif (s.average.nan?)
+            @grades[:other] += 1
+         end
+      end
+
    end
 end

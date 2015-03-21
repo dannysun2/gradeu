@@ -2,9 +2,11 @@
 
 <div class="col-md-9">
    <div class="content">
+      <p><%= link_to "Back", :back %></p>
+      <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto; margin-bottom: 30px;"></div>
    <div class="panel panel-default">
      <!-- Default panel contents -->
-     <div class="panel-heading"><%= "#{@student.firstname.capitalize} #{@student.lastname.capitalize}" %></div>
+     <div class="panel-heading"><%= "#{@student.firstname.capitalize} #{@student.lastname.capitalize}" %> <span class="pull-right"><b>Weighted Average:</b> <%= @student.average %></span></div>
 
    <table class="table table-hover">
    <% @assignment.each do |a| %>
@@ -14,4 +16,45 @@
 </div>
 </div>
 
+<%= @min %>
+<%= @max %>
+
+
 </div>
+
+<script>
+$(function () {
+    $('#container').highcharts({
+        title: {
+            text: 'Student Grades',
+            x: -20 //center
+        },
+        xAxis: {
+            categories: <%= raw @assignment.pluck("name").to_json%>
+        },
+        yAxis: {
+            title: {
+                text: 'Grade'
+            },
+            plotLines: [{
+                value: 0,
+                width: 1,
+                color: '#808080'
+            }]
+        },
+        tooltip: {
+            valueSuffix: '°C'
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'middle',
+            borderWidth: 0
+        },
+        series: [{
+            name: <%= raw @student.firstname.to_json %>,
+            data: <%= raw @assignment.pluck("grade").to_json %>
+        }]
+    });
+});
+</script>

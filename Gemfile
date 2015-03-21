@@ -44,7 +44,7 @@ end
 gem 'bootstrap-sass'
 gem 'simple_form', '3.1.0.rc2'
 gem 'lazy_high_charts'
-
+gem "chartkick"
 group :development do
    gem 'rails_admin'
    gem 'better_errors', '~> 2.1.1'

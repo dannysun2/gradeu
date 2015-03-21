@@ -1,21 +1,78 @@
+
 <%= render 'layouts/leftnav' %>
 
    <div class="col-md-9">
       <div class="content">
          <div class="page-header">
             <h3>Dashboard <small><%= @classgroup.name %></small></h3>
-            <%= link_to "Add Assignment", new_user_classgroup_assignment_path(classgroup_id: @classgroup.id) %>
+            <div class="btn-group ">
+                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                   <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span>
+                 </button>
+                 <ul class="dropdown-menu" role="menu">
+                   <li><%= link_to "Add Assignment", new_user_classgroup_assignment_path(classgroup_id: @classgroup.id) %></li>
+                   <li><%= link_to "Add Student", new_user_classgroup_student_path(user_id: @current_user, classgroup_id: @classgroup.id) %></li>
+                 </ul>
+            </div>
          </div>
+
+
+         <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto; margin-bottom: 30px;
+"></div>
+
+         <script>
+         $(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Breakdown of Student Averages'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            // name: 'Browser share',
+            data: [
+                ['A',   <%= @grades[:a] %>],
+                ['B',      <%= @grades[:b] %>],
+                ['C',  <%= @grades[:c] %>],
+                ['D',   <%= @grades[:d] %>],
+                ['F',   <%= @grades[:f] %>],
+                ['Other',  <%= @grades[:other] %>]
+            ]
+        }]
+    });
+});
+</script>
+
 
          <div class="panel panel-default">
            <!-- Default panel contents -->
-           <div class="panel-heading">Total of <b><%= @students.count %></b> student(s) enrolled - <%= link_to "Add Student", new_user_classgroup_student_path(user_id: @current_user, classgroup_id: @classgroup.id) %></div>
+           <div class="panel-heading">Total of <b><%= @students.count %></b> student(s) enrolled</div>
 
            <!-- Table -->
 
            <table class="table table-hover">
       <% @students.each do |s| %>
-         <tr><td><%= link_to "#{s.firstname.capitalize} #{s.lastname.capitalize}", user_classgroup_student_path(id: s.id, classgroup_id: @classgroup.id, user_id: @current_user.id) %></td></tr>
+         <tr><td><%= link_to "#{s.firstname.capitalize} #{s.lastname.capitalize}", user_classgroup_student_path(id: s.id, classgroup_id: @classgroup.id, user_id: @current_user.id) %> <span class="pull-right"><b>Average:</b> <%= s.average %></span></td></tr>
          <% end %>
       </table>
     </div>
