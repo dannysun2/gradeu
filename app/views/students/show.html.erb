@@ -24,7 +24,7 @@ $(function () {
 
     var ranges = [
       <% for i in 0..@max.count-1 %>
-      [<%= @min[i] %>, <%= @max[i] %>],
+      ["<%= @assignments[i] %>", <%= @min[i] %>, <%= @max[i] %>],
       <% end %>
         ],
         averages = [
@@ -41,7 +41,7 @@ $(function () {
         },
 
         xAxis: {
-            type: 'datetime'
+            type: 'category'
         },
 
         yAxis: {
