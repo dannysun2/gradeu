@@ -16,45 +16,101 @@
 </div>
 </div>
 
-<%= @min %>
-<%= @max %>
-
-
 </div>
 
 <script>
 $(function () {
+
+
+    var ranges = [
+      <% for i in 0..@max.count-1 %>
+      [<%= @min[i] %>, <%= @max[i] %>],
+      <% end %>
+        ],
+        averages = [
+           <% @assignment.each do |a| %>
+           [<%= a.grade %>],
+           <% end %>
+        ];
+
+
     $('#container').highcharts({
+
         title: {
-            text: 'Student Grades',
-            x: -20 //center
+            text: 'Student Grades'
         },
+
         xAxis: {
-            categories: <%= raw @assignment.pluck("name").to_json%>
+            type: 'datetime'
         },
+
         yAxis: {
             title: {
-                text: 'Grade'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
+                text: null
+            }
         },
+
         tooltip: {
-            valueSuffix: '°C'
+            crosshairs: true,
+            shared: true
         },
+
         legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
         },
+
         series: [{
-            name: <%= raw @student.firstname.to_json %>,
-            data: <%= raw @assignment.pluck("grade").to_json %>
+            name: 'Student Score',
+            data: averages,
+            zIndex: 1,
+            marker: {
+                fillColor: 'white',
+                lineWidth: 2,
+                lineColor: Highcharts.getOptions().colors[0]
+            }
+        }, {
+            name: 'Class Range',
+            data: ranges,
+            type: 'arearange',
+            lineWidth: 0,
+            linkedTo: ':previous',
+            color: Highcharts.getOptions().colors[0],
+            fillOpacity: 0.3,
+            zIndex: 0
         }]
     });
 });
+// $(function () {
+//     $('#container').highcharts({
+//         title: {
+//             text: 'Student Grades',
+//             x: -20 //center
+//         },
+//         xAxis: {
+//             categories: <%= raw @assignment.pluck("name").to_json%>
+//         },
+//         yAxis: {
+//             title: {
+//                 text: 'Grade'
+//             },
+//             plotLines: [{
+//                 value: 0,
+//                 width: 1,
+//                 color: '#808080'
+//             }]
+//         },
+//         tooltip: {
+//             valueSuffix: '°C'
+//         },
+//         legend: {
+//             layout: 'vertical',
+//             align: 'right',
+//             verticalAlign: 'middle',
+//             borderWidth: 0
+//         },
+//         series: [{
+//             name: <%= raw @student.firstname.to_json %>,
+//             data: <%= raw @assignment.pluck("grade").to_json %>
+//         }]
+//     });
+// });
 </script>
