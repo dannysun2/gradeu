@@ -15,4 +15,8 @@ class Student < ActiveRecord::Base
       return (sum * 100.00/tpercent).round(1)
    end
 
+   def fullname
+      self.firstname + " " +self.lastname
+   end
+
 end

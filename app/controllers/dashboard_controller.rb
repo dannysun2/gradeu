@@ -4,6 +4,7 @@ class DashboardController < ApplicationController
 
   def index
      @classes = Classgroup.all
+     @students = Student.all
   end
 
   def show
