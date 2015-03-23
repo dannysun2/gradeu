@@ -6,7 +6,7 @@
 </div>
    <div class="col-md-4 col-sm-3 col-xs-12">
       <div class="panel panel-default">
-      <div class="panel-heading">Top Performing Students</span></div>
+      <div class="panel-heading">Top Performing Students</div>
 
          <table class="table table-hover">
             <% @students.sort_by(&:average).reverse.first(5).each do |s| %>
@@ -18,7 +18,7 @@
 
       <div class="col-md-4 col-sm-3 col-xs-12">
          <div class="panel panel-default">
-           <div class="panel-heading">Lowest Performing Students</span></div>
+           <div class="panel-heading">Lowest Performing Students</div>
 
          <table class="table table-hover">
          <% @students.sort_by(&:average).first(5).each do |s| %>
