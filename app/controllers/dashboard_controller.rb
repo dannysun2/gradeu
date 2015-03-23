@@ -5,7 +5,6 @@ class DashboardController < ApplicationController
   def index
      @classes = Classgroup.all
      @students = Student.all
-
      #Assignments Widgets
      @graded = Assignment.where.not(grade: nil)
      @ungraded = Assignment.where grade: nil
