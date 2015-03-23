@@ -4,15 +4,15 @@
       <h1>Dashboard<small> - Students: <%= @students.count %> </small></h1>
       <hr>
 </div>
-<div class="col-md-4 col-sm-3 col-xs-12">
+   <div class="col-md-4 col-sm-3 col-xs-12">
       <div class="panel panel-default">
-        <div class="panel-heading">Top Performing Students</span></div>
+      <div class="panel-heading">Top Performing Students</span></div>
 
-      <table class="table table-hover">
-      <% @students.sort_by(&:average).reverse.first(5).each do |s| %>
-      <tr><td><%= link_to s.fullname, user_classgroup_student_path(user_id: s.user_id, id: s.id, classgroup_id: s.classgroup_id) %> <span class="pull-right"><b>Average:</b> <%= s.average %></td></tr>
-      <% end %>
-      </table>
+         <table class="table table-hover">
+            <% @students.sort_by(&:average).reverse.first(5).each do |s| %>
+               <tr><td><%= link_to s.fullname, user_classgroup_student_path(user_id: s.user_id, id: s.id, classgroup_id: s.classgroup_id) %> <span class="pull-right"><b>Average:</b> <%= s.average %></span></td></tr>
+            <% end %>
+         </table>
       </div>
    </div>
 
@@ -22,7 +22,7 @@
 
          <table class="table table-hover">
          <% @students.sort_by(&:average).first(5).each do |s| %>
-         <tr><td><%= link_to s.fullname, user_classgroup_student_path(user_id: s.user_id, id: s.id, classgroup_id: s.classgroup_id) %> <span class="pull-right"><b>Average:</b> <%= s.average %></td></tr>
+         <tr><td><%= link_to s.fullname, user_classgroup_student_path(user_id: s.user_id, id: s.id, classgroup_id: s.classgroup_id) %> <span class="pull-right"><b>Average:</b> <%= s.average %></span></td></tr>
          <% end %>
          </table>
          </div>
