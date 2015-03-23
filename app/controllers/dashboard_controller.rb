@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
      @classes = Classgroup.all
      @students = Student.all
 
-     @studentavg = @students.sort_by(&:average).reverse.first(5).to_s
+     @studentavg = @students.sort_by(&:average).reverse
 
      #Assignments Widgets
      @graded = Assignment.where.not(grade: nil)
