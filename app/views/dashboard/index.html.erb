@@ -9,7 +9,7 @@
       <div class="panel-heading">Top Performing Students</div>
 
          <table class="table table-hover">
-            <% @students.first(5).each do |s| %>
+            <% @studentavg.each do |s| %>
                <tr><td><%= link_to s.fullname, user_classgroup_student_path(user_id: s.user_id, id: s.id, classgroup_id: s.classgroup_id) %> <span class="pull-right"><b>Average:</b> <%= s.average %></span></td></tr>
             <% end %>
          </table>
