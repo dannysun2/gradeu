@@ -46,6 +46,7 @@ gem 'simple_form', '3.1.0.rc2'
 gem 'lazy_high_charts'
 gem "chartkick"
 gem 'rails_admin'
+gem 'rails_12factor'
 group :development do
    gem 'better_errors', '~> 2.1.1'
    gem 'binding_of_caller', '~> 0.7.2'
