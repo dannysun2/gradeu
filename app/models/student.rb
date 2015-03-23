@@ -10,6 +10,8 @@ class Student < ActiveRecord::Base
          if a.grade != nil && a.weight != nil
             sum = sum + (a.grade * (a.weight / 100.00))
             tpercent = tpercent + a.weight
+         else
+            return 0
          end
       end
       return (sum * 100.00/tpercent).round(1)
