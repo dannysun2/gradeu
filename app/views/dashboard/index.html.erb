@@ -1,11 +1,10 @@
 <%= render 'layouts/leftnav' %>
-
-   <div class="col-md-9">
+<div class="col-md-9">
       <div class="content">
-      <h1>Dashboard</h1>
+      <h1>Dashboard<small> - Students: <%= @students.count %> </small></h1>
       <hr>
-
-<div class="col-md-6">
+</div>
+<div class="col-md-4 col-sm-3 col-xs-12">
       <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">Top Performing Students</span></div>
@@ -18,7 +17,7 @@
       </div>
    </div>
 
-      <div class="col-md-6">
+      <div class="col-md-4 col-sm-3 col-xs-12">
          <div class="panel panel-default">
            <!-- Default panel contents -->
            <div class="panel-heading">Lowest Performing Students</span></div>
@@ -31,6 +30,58 @@
          </div>
       </div>
 
-   </div>
+         <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+      </div>
+
    </div>
 </div>
+
+<script>
+$(function () {
+        Highcharts.setOptions({
+     colors: ['#3498db', '#CDDDE8']
+    });
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+        title: {
+            text: 'Assignments',
+            align: 'center',
+            verticalAlign: 'middle',
+            y: 50
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: true,
+                    distance: -50,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'white',
+                        textShadow: '0px 1px 2px black'
+                    }
+                },
+                startAngle: -90,
+                endAngle: 90,
+                center: ['50%', '75%']
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Assignments',
+            innerSize: '50%',
+            data: [
+                ['Graded',   <%= raw @graded.count.to_json %>],
+                ['Ungraded', <%= raw @ungraded.count.to_json %>],
+            ]
+        }]
+    });
+});
+
+</script>

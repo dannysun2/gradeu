@@ -1,7 +1,26 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
 
-html,body{height:100%;}
+@font-face {
+    font-family: 'moonlight';
+    src: url('/fonts/geomanist-regular-webfont.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'moonbold';
+    src: url('/fonts/moonbold.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+html,body {
+   height: 100%;
+   font-family: 'Open Sans', sans-serif;
+}
 
 .left-nav {
    background: #F8FAFB;
