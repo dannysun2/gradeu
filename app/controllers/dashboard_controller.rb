@@ -7,10 +7,10 @@ class DashboardController < ApplicationController
      @students = Student.all
 
      #top 5 students
-     @top = []
+     @filteredstudents = []
      @students.each do |s|
         unless s.average.nan?
-           @top << s
+           @filteredstudents << s
         end
      end
 

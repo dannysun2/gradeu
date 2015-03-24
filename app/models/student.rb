@@ -12,11 +12,8 @@ class Student < ActiveRecord::Base
             tpercent = tpercent + a.weight
          end
       end
-
       return (sum * 100.00/tpercent).round(1)
-
    end
-
 
 
    def fullname
