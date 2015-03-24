@@ -1,11 +1,11 @@
    <div class="col-md-2 col-sm-3 hidden-xs fill">
       <div class="left-nav fill">
       <p><%= link_to "Dashboard", dashboard_path %></p>
-      <p><%= link_to "Add Classroom", new_user_classgroup_path(user_id: @current_user) %></p>
+      <p><i class="fa fa-plus-square fa-1x"> </i><%= link_to "Add Classroom", new_user_classgroup_path(user_id: @current_user) %></p>
       <hr>
       <p>My Classes</p>
       <% @classes.each do |c| %>
-         <p><%= link_to c.name, user_classgroup_path(user_id: @current_user, id: c) %></p>
+         <p><i class="fa fa-users fa-1x"></i><%= link_to c.name, user_classgroup_path(user_id: @current_user, id: c) %></p>
       <% end %>
    </div>
 </div>

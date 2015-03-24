@@ -1,5 +1,6 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import "font-awesome";
 @import url(http://fonts.googleapis.com/css?family=Lato:400,300,600);
 
 @font-face {
@@ -27,6 +28,10 @@ html,body {
    padding: 20px;
    padding-left: 10px;
    border-right: 1px solid #DBDCDF;
+   i {
+      padding-right: 10px;
+      color: #DBDCDF;
+   }
 }
 
 .headnav {
@@ -84,6 +89,14 @@ html,body {
    h1 {
       font-size: 30px;
       margin-top: 0px;
+   }
+   i {
+      padding-left: 10px;
+      font-size: 26px;
+      color: #DBDCDF;
+   }
+   small {
+      vertical-align: middle;
    }
 }
 
