@@ -1,3 +1,8 @@
+<div class="form-wrap">
+   <div class="panel panel-default">
+     <!-- Default panel contents -->
+     <div class="panel-heading">Add Student</div>
+     <div class="formpad">
 <%= form_for Student.new, url: user_classgroup_students_path(classgroup: @classgroup) do |f| %>
   <div class="form-group">
     <%= f.label :firstname, "First Name:" %><br/>
@@ -12,3 +17,6 @@
     <%= f.submit "Add Student", class: "btn btn-primary btn-block"%>
   </div>
 <% end %>
+</div>
+</div>
+</div>

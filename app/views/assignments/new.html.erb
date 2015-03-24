@@ -1,3 +1,8 @@
+<div class="form-wrap">
+   <div class="panel panel-default">
+     <!-- Default panel contents -->
+     <div class="panel-heading">Create Assignment</div>
+     <div class="formpad">
 <%= form_for Assignment.new, url: user_classgroup_assignments_path(classgroup: @classgroup) do |f| %>
   <div class="form-group">
     <%= f.label :name %><br/>
@@ -12,3 +17,6 @@
     <%= f.submit "Add Assignment", class: "btn btn-primary btn-block"%>
   </div>
 <% end %>
+</div>
+</div>
+</div>

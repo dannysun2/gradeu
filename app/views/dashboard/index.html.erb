@@ -1,12 +1,17 @@
+<%= render 'layouts/nav' %>
+
+<div class="container-fluid fill no-gutter">
 <%= render 'layouts/leftnav' %>
-<div class="col-md-9">
+<div class="col-md-9 fill">
       <div class="content">
-      <h1>Dashboard<small> - Students: <%= @students.count %> </small></h1>
+      <h1>Dashboard</h1>
       <hr>
-</div>
+
+<div class="students">
+   <div class="row">
    <div class="col-md-4 col-sm-3 col-xs-12">
       <div class="panel panel-default">
-      <div class="panel-heading">Top Performing Students</div>
+      <div class="panel-heading text-center">Top Performing Students</div>
          <table class="table table-hover">
             <% @filteredstudents.sort_by(&:average).reverse.first(5).each do |s| %>
             <tr><td><%= link_to s.fullname, user_classgroup_student_path(user_id: s.user_id, id: s.id, classgroup_id: s.classgroup_id) %>
@@ -16,60 +21,122 @@
       </div>
    </div>
 
-         <div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto">
+   <div class="col-md-4 col-sm-3 col-xs-12">
+      <div class="panel panel-default">
+      <div class="panel-heading text-center">Underperforming Students</div>
+         <table class="table table-hover">
+            <% @filteredstudents.sort_by(&:average).first(5).each do |s| %>
+            <tr><td><%= link_to s.fullname, user_classgroup_student_path(user_id: s.user_id, id: s.id, classgroup_id: s.classgroup_id) %>
+                   <span class="pull-right"><b>Average: </b><%= s.average %></span></td></tr>
+            <% end %>
+         </table>
       </div>
-
    </div>
+
+   <div class="col-md-4 col-sm-3 col-xs-12">
+      <div class="panel panel-default">
+      <div class="panel-heading text-center">Total Students</div>
+         <table class="table table-hover">
+            <tr><td class="text-center"><h1><%= @students.count %></h1></tr></td>
+         </table>
+      </div>
+   </div>
+</div>
+</div>
+
+<div class="assignments">
+   <div class="row">
+   <div class="col-md-4 col-sm-3 col-xs-12">
+      <div class="panel panel-default">
+      <div class="panel-heading text-center">Assignments Total</div>
+         <table class="table table-hover">
+            <tr><td class="text-center"><h1><%= @assignments.count %></h1></tr></td>
+         </table>
+      </div>
+   </div>
+
+   <div class="col-md-4 col-sm-3 col-xs-12">
+      <div class="panel panel-default">
+      <div class="panel-heading text-center">Graded</div>
+         <table class="table table-hover">
+            <tr><td class="text-center"><h1><%= @graded.count %></h1></tr></td>
+         </table>
+      </div>
+   </div>
+
+   <div class="col-md-4 col-sm-3 col-xs-12">
+      <div class="panel panel-default">
+      <div class="panel-heading text-center">Ungraded</div>
+         <table class="table table-hover">
+            <tr><td class="text-center"><h1><%= @ungraded.count %></h1></tr></td>
+         </table>
+      </div>
+   </div>
+</div>
+</div>
+
+</div>
+<!-- <div id="pie"></div>
+
+   </div> -->
 
 
 </div>
+</div>
 
 <script>
-$(function () {
-        Highcharts.setOptions({
-     colors: ['#3498db', '#CDDDE8']
-    });
-    $('#container').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: 0,
-            plotShadow: false
-        },
-        title: {
-            text: 'Assignments',
-            align: 'center',
-            verticalAlign: 'middle',
-            y: 50
-        },
-        tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        },
-        plotOptions: {
-            pie: {
-                dataLabels: {
-                    enabled: true,
-                    distance: -50,
-                    style: {
-                        fontWeight: 'bold',
-                        color: 'white',
-                        textShadow: '0px 1px 2px black'
-                    }
-                },
-                startAngle: -90,
-                endAngle: 90,
-                center: ['50%', '75%']
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: 'Assignments',
-            innerSize: '50%',
-            data: [
-                ['Graded',   <%= raw @graded.count.to_json %>],
-                ['Ungraded', <%= raw @ungraded.count.to_json %>],
-            ]
-        }]
-    });
-});
-
-</script>
+// $(function () {
+//         Highcharts.setOptions({
+//      colors: ['#3498db', '#CDDDE8']
+//     });
+//     $('#pie').highcharts({
+//       credits: {
+//             enabled: false
+//         },
+//         chart: {
+//             plotBackgroundColor: null,
+//             plotBorderWidth: 0,
+//             plotShadow: false,
+//             width: 300
+//         },
+//         title: {
+//             text: 'Assignments',
+//             align: 'center',
+//             verticalAlign: 'middle',
+//             y: 70
+//         },
+//         tooltip: {
+//             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+//         },
+//         plotOptions: {
+//             pie: {
+//                 dataLabels: {
+//                     enabled: true,
+//                     distance: -8,
+//                     style: {
+//                         fontWeight: 'bold',
+//                         color: 'white',
+//                         textShadow: '0px 1px 2px black'
+//                     }
+//                 },
+//                 startAngle: -90,
+//                 endAngle: 90,
+//                 center: ['50%', '75%']
+//             }
+//         },
+//         series: [{
+//             type: 'pie',
+//             name: 'Assignments',
+//             innerSize: '50%',
+//             data: [
+//             ['Graded',   <%= raw @graded.count.to_json %>],
+//             ['Ungraded', <%= raw @ungraded.count.to_json %>],
+//             ]
+//         }],
+//         exporting: {
+//            enabled: false
+//     }
+//     });
+// });
+//
+// </script>

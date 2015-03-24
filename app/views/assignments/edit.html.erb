@@ -1,3 +1,8 @@
+<div class="form-wrap">
+   <div class="panel panel-default">
+     <!-- Default panel contents -->
+     <div class="panel-heading">Submit Grade</div>
+     <div class="formpad">
 <%= form_for @assignment, url: user_classgroup_assignment_path(student_id: params[:student_id], assignment_id: params[:assignment_id]) do |f| %>
 
   <div class="form-group">
@@ -9,3 +14,6 @@
     <%= f.submit "Submit Grade", class: "btn btn-success btn-block" %>
   </div>
 <% end %>
+</div>
+</div>
+</div>

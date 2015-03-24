@@ -1,13 +1,17 @@
+<%= render 'layouts/nav' %>
+
+<div class="container-fluid fill no-gutter">
 <%= render 'layouts/leftnav' %>
 
 <div class="col-md-9">
    <div class="content">
-      <p><%= link_to "Back", :back %></p>
+      <p><%= link_to "Back", user_classgroup_path(id: params[:classgroup_id]) %></p>
       <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto; margin-bottom: 30px;"></div>
    <div class="panel panel-default">
      <!-- Default panel contents -->
      <div class="panel-heading"><%= "#{@student.fullname}" %>
-        <span class="pull-right"><b>Weighted Average:</b> <% if @student.average.nan? %>
+        <span class="pull-right"><b>Weighted Average:</b>
+      <% if @student.average.nan? %>
            No Grades
      <% else %>
          <%= @student.average %>

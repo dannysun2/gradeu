@@ -1,6 +1,6 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,300,600);
 
 @font-face {
     font-family: 'moonlight';
@@ -19,13 +19,31 @@
 
 html,body {
    height: 100%;
-   font-family: 'Open Sans', sans-serif;
+   font-family: 'Lato', sans-serif;
 }
 
 .left-nav {
    background: #F8FAFB;
    padding: 20px;
    padding-left: 10px;
+   border-right: 1px solid #DBDCDF;
+}
+
+.headnav {
+   height: 40px;
+   background: #000;
+   padding: 10px;
+   padding-left: 30px;
+   padding-right: 30px;
+   color: white;
+   text-transform: uppercase;
+   a:active, a:visited, a:link {
+      color: #D8D8D8;
+      text-decoration: none;
+   }
+   a:hover {
+      color: white;
+   }
 }
 
 .no-gutter > [class*='col-'] {
@@ -76,4 +94,19 @@ html,body {
 
 h3 {
    margin-top: -40px;
+}
+
+#pie {
+   width: 200px;
+   font-size:10px;
+}
+
+.form-wrap {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+  }
+
+.formpad {
+   padding: 10px;
 }

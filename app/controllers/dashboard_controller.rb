@@ -16,6 +16,7 @@ class DashboardController < ApplicationController
 
 
      #Assignments Widgets
+     @assignments = Assignment.all
      @graded = Assignment.where.not(grade: nil)
      @ungraded = Assignment.where grade: nil
      #--------------------
