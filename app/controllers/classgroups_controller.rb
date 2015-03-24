@@ -1,5 +1,3 @@
-require 'ostruct'
-
 class ClassgroupsController < ApplicationController
 
    before_action :authenticate_user!
