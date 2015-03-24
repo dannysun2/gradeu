@@ -1,6 +1,8 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
-
+<div class="form-wrap">
+   <div class="panel panel-default">
+     <!-- Default panel contents -->
+     <div class="panel-heading">Sign In</div>
+     <div class="formpad">
 <%= form_tag auth_path do %>
   <div class="form-group">
     <%= label_tag :username %><br/>
@@ -13,3 +15,6 @@
     <%= submit_tag "Sign In", class: "btn btn-primary"%>
   </div>
 <% end %>
+</div>
+</div>
+</div>
