@@ -1,3 +1,5 @@
+require 'ostruct'
+
 class ClassgroupsController < ApplicationController
 
    before_action :authenticate_user!
@@ -29,7 +31,6 @@ class ClassgroupsController < ApplicationController
       @grades = {a: 0, b: 0, c: 0, d: 0, f: 0, other: 0}
 
       @students.each do |s|
-
          if (s.average >= 90 && s.average.is_a?(Numeric))
             @grades[:a] += 1
          elsif (s.average >= 80 && s.average < 90 && s.average.is_a?(Numeric))

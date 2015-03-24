@@ -54,14 +54,12 @@
         },
         series: [{
             type: 'pie',
-            // name: 'Browser share',
             data: [
-                ['A',   <%= @grades[:a] %>],
-                ['B',      <%= @grades[:b] %>],
-                ['C',  <%= @grades[:c] %>],
-                ['D',   <%= @grades[:d] %>],
-                ['F',   <%= @grades[:f] %>],
-                ['Other',  <%= @grades[:other] %>]
+               <% @grades.each do |k,v| %>
+               <% if v != 0 %>
+                [<%= raw k.capitalize.to_json %>,   <%= raw v.to_json %>],
+                <% end %>
+                <% end %>
             ]
         }]
     });
