@@ -2,6 +2,8 @@ class Student < ActiveRecord::Base
    belongs_to :user
    belongs_to :classgroup
 
+   validates :firstname, :lastname, :age, :gender, presence: true
+
    def average
       @assignment = Assignment.where student_id: self.id
       tpercent = 0

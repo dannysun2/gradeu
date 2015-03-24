@@ -1,19 +1,21 @@
 <div class="form-wrap">
+   <% if @assignment.errors.any? %>
+      <% @assignment.errors.full_messages.each do |s| %>
+         <div class="alert alert-danger" role="alert"><%= s %></div>
+         <% end %>
+   <% end %>
    <div class="panel panel-default">
      <!-- Default panel contents -->
      <div class="panel-heading">Create Assignment</div>
      <div class="formpad">
-<%= form_for Assignment.new, url: user_classgroup_assignments_path(classgroup: @classgroup) do |f| %>
+<%= form_for @assignment, url: user_classgroup_assignments_path(classgroup: @classgroup) do |f| %>
   <div class="form-group">
     <%= f.label :name %><br/>
-    <%= f.text_field :name, class: "form-control" %></br>
-  </div>
-  <div class="form-group">
-    <%= f.label :weight %><br/>
-    <%= f.text_field :weight, class: "form-control" %></br>
-  </div>
+    <%= f.text_field :name, class: "form-control", placeholder: "Exam #1" %></br>
 
-  <div class="form-group">
+    <%= f.label :weight %><br/>
+    <%= f.text_field :weight, class: "form-control", placeholder: "15" %></br>
+
     <%= f.submit "Add Assignment", class: "btn btn-primary btn-block"%>
   </div>
 <% end %>

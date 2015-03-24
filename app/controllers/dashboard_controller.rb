@@ -14,11 +14,13 @@ class DashboardController < ApplicationController
         end
      end
 
+     @classrooms = Classgroup.all
 
      #Assignments Widgets
      @assignments = Assignment.all
      @graded = Assignment.where.not(grade: nil)
      @ungraded = Assignment.where grade: nil
+     @progress = (@graded.count/(@graded.count + @ungraded.count)) * 100
      #--------------------
   end
 

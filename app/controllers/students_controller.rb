@@ -5,6 +5,10 @@ class StudentsController < ApplicationController
   def index
   end
 
+  def edit
+     @student = Student.find params[:id]
+  end
+
   def show
      @student = Student.find params[:id]
      @classes = Classgroup.where(user_id: params[:user_id])
@@ -23,7 +27,7 @@ class StudentsController < ApplicationController
   end
 
   def create
-     @student = Student.new params.require(:student).permit(:firstname, :lastname)
+     @student = Student.new params.require(:student).permit(:firstname, :lastname, :age, :gender)
      @student.user_id = @current_user.id
      @student.classgroup_id = params[:classgroup_id]
 
@@ -35,8 +39,17 @@ class StudentsController < ApplicationController
   end
 
   def new
-     @student = params[:user_id]
+     @student = Student.new
      @classgroup = params[:classgroup_id]
+  end
+
+  def update
+     @student = Student.find params[:id]
+        if @student.update params.require(:student).permit(:firstname,:lastname,:age,:gender)
+           redirect_to user_classgroup_student_path(user_id: @current_user.id, student_id: params[:student_id] )
+        else
+           render :edit
+        end
   end
 
 end

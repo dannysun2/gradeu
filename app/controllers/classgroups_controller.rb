@@ -20,6 +20,19 @@ class ClassgroupsController < ApplicationController
        end
    end
 
+   def edit
+      @classgroup = Classgroup.find (params[:id])
+   end
+
+   def update
+      @classgroup = Classgroup.find params[:id]
+         if @classgroup.update params.require(:classgroup).permit(:name)
+           redirect_to user_classgroup_path(user_id: @current_user.id, classgroup_id: params[:classgroup_id])
+         else
+           render :edit
+         end
+   end
+
    def show
       @classes = Classgroup.where(user_id: params[:user_id])
       @classgroup = Classgroup.find params[:id]

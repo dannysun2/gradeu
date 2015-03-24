@@ -1,0 +1,19 @@
+<div class="form-wrap">
+   <div class="panel panel-default">
+     <!-- Default panel contents -->
+     <div class="panel-heading">Edit Classroom</div>
+     <div class="formpad">
+<%= form_for @classgroup, url: user_classgroup_path(classgroup_id: params[:classgroup_id]) do |f| %>
+
+  <div class="form-group">
+     <%= f.label :name, "Classroom Name" %><br/>
+    <%= f.text_field :name, class: "form-control" %></br>
+  </div>
+
+  <div>
+    <%= f.submit "Edit Classroom", class: "btn btn-success btn-block" %>
+  </div>
+<% end %>
+</div>
+</div>
+</div>

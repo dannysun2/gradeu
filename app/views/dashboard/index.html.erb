@@ -9,7 +9,7 @@
 
 <div class="students">
    <div class="row">
-   <div class="col-md-4 col-sm-3 col-xs-12">
+   <div class="col-md-6 col-sm-3 col-xs-12">
       <div class="panel panel-default">
       <div class="panel-heading text-center">Top Performing Students</div>
          <table class="table table-hover">
@@ -21,7 +21,7 @@
       </div>
    </div>
 
-   <div class="col-md-4 col-sm-3 col-xs-12">
+   <div class="col-md-6 col-sm-3 col-xs-12">
       <div class="panel panel-default">
       <div class="panel-heading text-center">Underperforming Students</div>
          <table class="table table-hover">
@@ -32,43 +32,45 @@
          </table>
       </div>
    </div>
-
-   <div class="col-md-4 col-sm-3 col-xs-12">
-      <div class="panel panel-default">
-      <div class="panel-heading text-center">Total Students</div>
-         <table class="table table-hover">
-            <tr><td class="text-center"><h1><%= @students.count %></h1></tr></td>
-         </table>
-      </div>
-   </div>
 </div>
 </div>
 
 <div class="assignments">
    <div class="row">
-   <div class="col-md-4 col-sm-3 col-xs-12">
+   <div class="col-md-3 col-sm-3 col-xs-12">
       <div class="panel panel-default">
-      <div class="panel-heading text-center">Assignments Total</div>
+      <div class="panel-heading text-center">Total Assignments</div>
          <table class="table table-hover">
-            <tr><td class="text-center"><h1><%= @assignments.count %></h1></tr></td>
+            <tr><td class="text-center"><h1><div class="student-counter"><%= @assignments.count %></div></h1></tr></td>
          </table>
       </div>
    </div>
 
-   <div class="col-md-4 col-sm-3 col-xs-12">
+   <div class="col-md-3 col-sm-3 col-xs-12">
       <div class="panel panel-default">
-      <div class="panel-heading text-center">Graded</div>
+      <div class="panel-heading text-center">Total Classrooms</div>
          <table class="table table-hover">
-            <tr><td class="text-center"><h1><%= @graded.count %></h1></tr></td>
+            <tr><td class="text-center"><h1><div class="classrooms-counter"><%= @classrooms.count %></div></h1></tr></td>
          </table>
       </div>
    </div>
 
-   <div class="col-md-4 col-sm-3 col-xs-12">
+   <div class="col-md-3 col-sm-3 col-xs-12">
       <div class="panel panel-default">
-      <div class="panel-heading text-center">Ungraded</div>
+      <div class="panel-heading text-center">Grading Progress</div>
          <table class="table table-hover">
-            <tr><td class="text-center"><h1><%= @ungraded.count %></h1></tr></td>
+            <tr><td class="text-center"><h1><div class="second"><%= @progress %></div></h1></tr></td>
+         </table>
+      </div>
+   </div>
+
+
+
+   <div class="col-md-3 col-sm-3 col-xs-12">
+      <div class="panel panel-default">
+      <div class="panel-heading text-center">Total Students</div>
+         <table class="table table-hover">
+            <tr><td class="text-center"><h1><div class="student-counter"><%= @students.count %></div></h1></tr></td>
          </table>
       </div>
    </div>
@@ -85,58 +87,35 @@
 </div>
 
 <script>
-// $(function () {
-//         Highcharts.setOptions({
-//      colors: ['#3498db', '#CDDDE8']
-//     });
-//     $('#pie').highcharts({
-//       credits: {
-//             enabled: false
-//         },
-//         chart: {
-//             plotBackgroundColor: null,
-//             plotBorderWidth: 0,
-//             plotShadow: false,
-//             width: 300
-//         },
-//         title: {
-//             text: 'Assignments',
-//             align: 'center',
-//             verticalAlign: 'middle',
-//             y: 70
-//         },
-//         tooltip: {
-//             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-//         },
-//         plotOptions: {
-//             pie: {
-//                 dataLabels: {
-//                     enabled: true,
-//                     distance: -8,
-//                     style: {
-//                         fontWeight: 'bold',
-//                         color: 'white',
-//                         textShadow: '0px 1px 2px black'
-//                     }
-//                 },
-//                 startAngle: -90,
-//                 endAngle: 90,
-//                 center: ['50%', '75%']
-//             }
-//         },
-//         series: [{
-//             type: 'pie',
-//             name: 'Assignments',
-//             innerSize: '50%',
-//             data: [
-//             ['Graded',   <%= raw @graded.count.to_json %>],
-//             ['Ungraded', <%= raw @ungraded.count.to_json %>],
-//             ]
-//         }],
-//         exporting: {
-//            enabled: false
-//     }
-//     });
-// });
-//
-// </script>
+$( document ).ready(function() {
+
+               $('.student-counter').counterUp({
+                   delay: 10,
+                   time: 1000
+               });
+
+               $('.assignments-counter').counterUp({
+                   delay: 10,
+                   time: 1000
+               });
+
+               $('.grading-counter').counterUp({
+                   delay: 10,
+                   time: 1000
+               });
+
+               $('.classrooms-counter').counterUp({
+                   delay: 10,
+                   time: 1000
+               });
+
+               $('.second').circleProgress({
+    value: 0.6
+}).on('circle-animation-progress', function(event, progress) {
+    $(this).find('strong').html(parseInt(100 * progress) + '<i>%</i>');
+});
+
+});
+
+(function(e){"use strict";e.fn.counterUp=function(t){var n=e.extend({time:400,delay:10},t);return this.each(function(){var t=e(this),r=n,i=function(){var e=[],n=r.time/r.delay,i=t.text(),s=/[0-9]+,[0-9]+/.test(i);i=i.replace(/,/g,"");var o=/^[0-9]+$/.test(i),u=/^[0-9]+\.[0-9]+$/.test(i),a=u?(i.split(".")[1]||[]).length:0;for(var f=n;f>=1;f--){var l=parseInt(i/n*f);u&&(l=parseFloat(i/n*f).toFixed(a));if(s)while(/(\d+)(\d{3})/.test(l.toString()))l=l.toString().replace(/(\d+)(\d{3})/,"$1,$2");e.unshift(l)}t.data("counterup-nums",e);t.text("0");var c=function(){t.text(t.data("counterup-nums").shift());if(t.data("counterup-nums").length)setTimeout(t.data("counterup-func"),r.delay);else{delete t.data("counterup-nums");t.data("counterup-nums",null);t.data("counterup-func",null)}};t.data("counterup-func",c);setTimeout(t.data("counterup-func"),r.delay)};t.waypoint(i,{offset:"100%",triggerOnce:!0})})}})(jQuery);
+</script>

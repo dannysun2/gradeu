@@ -1,29 +1,26 @@
 <div class="form-wrap">
-   <% if @student.errors.any? %>
-      <% @student.errors.full_messages.each do |s| %>
-         <div class="alert alert-danger" role="alert"><%= s %></div>
-         <% end %>
-   <% end %>
    <div class="panel panel-default">
-     <div class="panel-heading">Add Student</div>
+     <!-- Default panel contents -->
+     <div class="panel-heading">Edit Student</div>
      <div class="formpad">
-<%= form_for @student, url: user_classgroup_students_path(classgroup: @classgroup) do |f| %>
+<%= form_for @student, url: user_classgroup_student_path(student_id: params[:student_id]) do |f| %>
+
   <div class="form-group">
-    <%= f.label :firstname, "First Name" %><br/>
+     <%= f.label :firstname, "First Name" %><br/>
     <%= f.text_field :firstname, class: "form-control" %></br>
 
     <%= f.label :lastname, "Last Name" %><br/>
     <%= f.text_field :lastname, class: "form-control" %></br>
 
-
     <%= f.label :age, "Age" %><br/>
     <%= f.text_field :age, class: "form-control" %></br>
 
-
     <%= f.label :gender, "Gender" %><br/>
     <%= f.text_field :gender, class: "form-control" %></br>
+  </div>
 
-    <%= f.submit "Add Student", class: "btn btn-primary btn-block"%>
+  <div>
+    <%= f.submit "Edit Student", class: "btn btn-success btn-block" %>
   </div>
 <% end %>
 </div>

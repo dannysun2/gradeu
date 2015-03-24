@@ -16,6 +16,9 @@
                    <li><%= link_to "Add Assignment", new_user_classgroup_assignment_path(classgroup_id: @classgroup.id) %></li>
                    <% end %>
                    <li><%= link_to "Add Student", new_user_classgroup_student_path(user_id: @current_user, classgroup_id: @classgroup.id) %></li>
+                   <li class="divider"></li>
+                   <li><%= link_to "Edit Classroom", edit_user_classgroup_path(classroom_id: @classgroup.id) %></li>
+                   <li><%= link_to "Delete Classroom", user_classgroup_path(classroom_id: @classgroup.id) %></li>
                  </ul>
             </div>
          </div>

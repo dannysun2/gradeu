@@ -1,4 +1,9 @@
 <div class="form-wrap">
+   <% if @classgroup.errors.any? %>
+      <% @classgroup.errors.full_messages.each do |s| %>
+         <div class="alert alert-danger" role="alert"><%= s %></div>
+         <% end %>
+   <% end %>
    <div class="panel panel-default">
      <!-- Default panel contents -->
      <div class="panel-heading">Create Classroom</div>
