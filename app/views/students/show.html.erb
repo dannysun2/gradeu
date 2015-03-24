@@ -6,7 +6,14 @@
       <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto; margin-bottom: 30px;"></div>
    <div class="panel panel-default">
      <!-- Default panel contents -->
-     <div class="panel-heading"><%= "#{@student.firstname.capitalize} #{@student.lastname.capitalize}" %> <span class="pull-right"><b>Weighted Average:</b> <%= @student.average %></span></div>
+     <div class="panel-heading"><%= "#{@student.fullname}" %>
+        <span class="pull-right"><b>Weighted Average:</b> <% if @student.average.nan? %>
+           No Grades
+     <% else %>
+         <%= @student.average %>
+     <% end %>
+      </span>
+     </div>
 
    <table class="table table-hover">
    <% @assignment.each do |a| %>
