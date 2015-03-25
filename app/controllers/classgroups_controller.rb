@@ -14,7 +14,7 @@ class ClassgroupsController < ApplicationController
      @classgroup.user_id = @current_user.id
 
        if @classgroup.save
-            redirect_to dashboard_path,  :notice => "Your Class was saved"
+            redirect_to dashboard_path
        else
             render "new"
        end
@@ -57,5 +57,11 @@ class ClassgroupsController < ApplicationController
          end
       end
 
+   end
+
+   def destroy
+     @classgroup = Classgroup.find(params[:id])
+     @classgroup.destroy
+     redirect_to dashboard_path
    end
 end

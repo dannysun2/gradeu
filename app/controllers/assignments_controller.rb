@@ -33,4 +33,10 @@ class AssignmentsController < ApplicationController
         end
   end
 
+  def destroy
+    @assignment = Assignment.find(params[:assignment_id])
+    @assignment.destroy
+    redirect_to user_classgroup_student_path(user_id: @current_user, classgroup_id: params[:classgroup_id], student_id: params[:student_id])
+  end
+
 end

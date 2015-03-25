@@ -52,4 +52,10 @@ class StudentsController < ApplicationController
         end
   end
 
+  def destroy
+    @student = Student.find(params[:id])
+    @student.destroy
+    redirect_to user_classgroup_path(id: params[:classgroup_id])
+  end
+
 end

@@ -61,7 +61,7 @@
       <div class="panel panel-default">
       <div class="panel-heading text-center">Grading Progress</div>
          <table class="table">
-            <tr><td class="text-center"><div id="myStat3" data-startdegree="90" data-dimension="150" data-text="35%" data-info="" data-width="20" data-fontsize="36" data-percent="35" data-fgcolor="#61a9dc" data-bgcolor="#eee"></div></tr></td>
+            <tr><td class="text-center"><div id="myStat3" data-startdegree="90" data-dimension="150" data-text="<%= (@progress*100).round %>%" data-info="" data-width="20" data-fontsize="30" data-percent="<%= @progress*100 %>" data-fgcolor="#61a9dc" data-bgcolor="#eee"></div></tr></td>
          </table>
       </div>
    </div>
