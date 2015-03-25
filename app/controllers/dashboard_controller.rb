@@ -20,7 +20,8 @@ class DashboardController < ApplicationController
      @assignments = Assignment.all
      @graded = Assignment.where.not(grade: nil)
      @ungraded = Assignment.where grade: nil
-     @progress = (@graded.count/(@graded.count + @ungraded.count)) * 100
+
+     @progress = @graded.count/(@graded.count + @ungraded.count).to_f
      #--------------------
   end
 
