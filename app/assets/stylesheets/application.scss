@@ -130,31 +130,9 @@ h3 {
    }
 }
 
-.circle {
-    position: relative;
-    line-height: 1.2;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    canvas {
-       vertical-align: top;
-   }
-   strong {
-       position: absolute;
-       top: 30px;
-       left: 0;
-       width: 100%;
-       text-align: center;
-       line-height: 40px;
-       font-size: 30px;
-       i {
-           font-style: normal;
-           font-size: 0.6em;
-           font-weight: normal;
-       }
-   }
-   span {
-       display: block;
-       color: #aaa;
-       margin-top: 12px;
-   }
+
+
+.circliful {
+   margin: 0 auto;
+   margin-top: 6px;
 }
