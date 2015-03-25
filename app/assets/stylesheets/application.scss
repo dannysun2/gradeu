@@ -1,7 +1,7 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
 @import "font-awesome";
-@import url(http://fonts.googleapis.com/css?family=Lato:400,300,600);
+@import url(http://fonts.googleapis.com/css?family=Lato:100,400,300,600);
 
 @font-face {
     font-family: 'moonlight';
@@ -71,15 +71,16 @@ html,body {
 }
 
 .splash-links {
-   margin-top: 20px;
    a:active, a:hover, a:visited, a:link {
-      border: 4px solid #388F68;
-      padding: 8px;
+      border: 4px solid #fff;
+      border-radius: 18px;
+      padding: 9px;
       text-decoration: none;
       text-transform: uppercase;
-      color: #388F68;
+      color: #fff;
       margin-left: 5px;
       margin-right: 5px;
+      font-size: 12px;
    }
 }
 
@@ -148,4 +149,32 @@ h3 {
    i {
       padding-right: 8px;
    }
+}
+
+.bg-img {
+width: 100%;
+height: 100%;
+background-image:
+    linear-gradient(
+      to top right,
+      #1E699A, #3498db
+    );
+background-size: cover;
+padding: 1px;
+h1 {
+   font-size: 40px;
+   color: #fff;
+   font-weight: 100;
+   margin-bottom: 20px;
+}
+}
+
+.center-block {
+   margin-bottom: 30px;
+}
+
+img.center-block {
+   width: 65%;
+-webkit-filter: drop-shadow(4px 4px 5px #484848);
+filter: drop-shadow(5px 5px 5px #484848);
 }

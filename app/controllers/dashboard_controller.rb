@@ -3,8 +3,8 @@ class DashboardController < ApplicationController
    before_action :authenticate_user!
 
   def index
-     @classes = Classgroup.all
-     @students = Student.all
+     @classes = Classgroup.where user_id: @current_user.id
+     @students = Student.where user_id: @current_user.id
 
      #top 5 students
      @filteredstudents = []
@@ -14,12 +14,10 @@ class DashboardController < ApplicationController
         end
      end
 
-     @classrooms = Classgroup.all
-
      #Assignments Widgets
-     @assignments = Assignment.all
-     @graded = Assignment.where.not(grade: nil)
-     @ungraded = Assignment.where grade: nil
+     @assignments = Assignment.where user_id: @current_user.id
+     @graded = @assignments.where.not(grade: nil)
+     @ungraded = @assignments.where grade: nil
      @progress = @graded.count/(@graded.count + @ungraded.count).to_f
      #--------------------
   end

@@ -51,7 +51,7 @@
       <div class="panel panel-default">
       <div class="panel-heading text-center">Total Classrooms</div>
          <table class="table table-hover">
-            <tr><td class="text-center"><h1><div class="classrooms-counter"><%= @classrooms.count %></div></h1></tr></td>
+            <tr><td class="text-center"><h1><div class="classrooms-counter"><%= @current_user.classgroups.count %></div></h1></tr></td>
          </table>
       </div>
    </div>
@@ -61,7 +61,7 @@
       <div class="panel panel-default">
       <div class="panel-heading text-center">Grading Progress</div>
          <table class="table">
-            <tr><td class="text-center"><div id="myStat3" data-startdegree="90" data-dimension="150" data-text="<%= (@progress*100).round %>%" data-info="" data-width="20" data-fontsize="30" data-percent="<%= @progress*100 %>" data-fgcolor="#61a9dc" data-bgcolor="#eee"></div></tr></td>
+            <tr><td class="text-center"><div id="myStat3" data-startdegree="90" data-dimension="150" data-text="<% if @progress.nan? %>0<% else %><%= (@progress*100).round %><% end %>%" data-info="" data-width="20" data-fontsize="30" data-percent="<% if @progress.nan? %>0<% else %><%= (@progress*100).round %><% end %>" data-fgcolor="#61a9dc" data-bgcolor="#eee"></div></tr></td>
          </table>
       </div>
    </div>
