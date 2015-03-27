@@ -19,8 +19,10 @@
     <%= f.label :age, "Age" %><br/>
     <%= f.text_field :age, class: "form-control" %></br>
 
-    <%= f.label :gender, "Gender" %><br/>
-    <%= f.text_field :gender, class: "form-control" %></br>
+    <div class="form-group">
+       <%= f.label :gender %>
+       <%= f.select(:gender, options_for_select(["Male","Female"]), {}, {class: "form-control"}) %>
+    </div>
 
     <%= f.submit "Add Student", class: "btn btn-primary btn-block"%>
   </div>

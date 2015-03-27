@@ -7,6 +7,8 @@
       <h1>Dashboard<small><i class="fa fa-tachometer fa-1x"></i></small></h1>
       <hr>
 
+<div id="comparison" style="height: 400px"></div>
+
 <div class="students">
    <div class="row">
    <div class="col-md-6 col-sm-3 col-xs-12">
@@ -77,8 +79,6 @@
 </div>
 </div>
 
-
-
 </div>
 </div>
 </div>
@@ -113,6 +113,47 @@ $( document ).ready(function() {
 
 (function(e){"use strict";e.fn.counterUp=function(t){var n=e.extend({time:400,delay:10},t);return this.each(function(){var t=e(this),r=n,i=function(){var e=[],n=r.time/r.delay,i=t.text(),s=/[0-9]+,[0-9]+/.test(i);i=i.replace(/,/g,"");var o=/^[0-9]+$/.test(i),u=/^[0-9]+\.[0-9]+$/.test(i),a=u?(i.split(".")[1]||[]).length:0;for(var f=n;f>=1;f--){var l=parseInt(i/n*f);u&&(l=parseFloat(i/n*f).toFixed(a));if(s)while(/(\d+)(\d{3})/.test(l.toString()))l=l.toString().replace(/(\d+)(\d{3})/,"$1,$2");e.unshift(l)}t.data("counterup-nums",e);t.text("0");var c=function(){t.text(t.data("counterup-nums").shift());if(t.data("counterup-nums").length)setTimeout(t.data("counterup-func"),r.delay);else{delete t.data("counterup-nums");t.data("counterup-nums",null);t.data("counterup-func",null)}};t.data("counterup-func",c);setTimeout(t.data("counterup-func"),r.delay)};t.waypoint(i,{offset:"100%",triggerOnce:!0})})}})(jQuery);
 
-
+$(function () {
+    $('#comparison').highcharts({
+        chart: {
+            type: 'bar',
+            reflow: true,
+            renderTo: 'comparison'
+        },
+        title: {
+            text: 'Classroom Comparison'
+        },
+        xAxis: {
+            categories: <%= raw @classes.map(&:name).last(10).to_json %>,
+            title: {
+                text: null
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Grade (0-100)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            name: "Class Average",
+            data: <%= raw @average.to_json %>
+        }]
+    });
+});
 
 </script>

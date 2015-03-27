@@ -20,6 +20,26 @@ class DashboardController < ApplicationController
      @ungraded = @assignments.where grade: nil
      @progress = @graded.count/(@graded.count + @ungraded.count).to_f
      #--------------------
+
+     @average = []
+
+     @classes.each do |c|
+        classavg = []
+
+        students = Student.where user_id: @current_user.id, classgroup_id: c.id
+        students.each do |s|
+
+           unless s.average.nan?
+                classavg << s.average
+           end
+
+        end
+        total = classavg.inject(:+).to_f
+
+        unless total.nan?
+           @average << (total/classavg.length).to_f.round(2)
+        end
+     end
   end
 
   def show

@@ -24,6 +24,12 @@ class StudentsController < ApplicationController
         @min << @c.minimum(:grade)
         @max << @c.maximum(:grade)
      end
+
+     #-----
+     
+
+
+
   end
 
   def create
